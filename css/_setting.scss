@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@use "sass:math";
+
+//ブレイクポイント
+$bp_pc: 1280px;
+$bp_tab: 834px;
+$bp_sp: 520px;
+
+//メディアクエリ
+@mixin pc {
+	@media only screen and (max-width: ($bp_pc)){
+		@content;
+	}
+}
+@mixin tab {
+	@media only screen and (max-width: ($bp_tab)){
+		@content;
+	}
+}
+@mixin sp {
+	@media only screen and (max-width: ($bp_sp)){
+		@content;
+	}
+}
+
+
+//color
+$bg: #cc7401;
+$bg2: #c00202;
+$bg3: #08c815;
+
+$maintxt: #525151;
+$sabtxt: #8573c8;
+$btn: #f823c3;
+$btn2: #6ab3f4;
+$sec: #bad5c7;
+$sec2: #fff1ba;

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>デザインのくふう - 思考の引き出し</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kiwi+Maru:wght@500&family=M+PLUS+Rounded+1c:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/ingenuity.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+
+    <div class="starfield-layer" aria-hidden="true">
+        <canvas id="starCanvas"></canvas>
+        <div class="bg-vignette"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="scroll-indicator-bar" id="progressBar"></div>
+
+    <div id="scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i data-lucide="arrow-up" class="w-6 h-6" style="width: 24px; height: 24px;"></i>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <a href="./index.html" class="logo">
+              <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                <div class="logo-placeholder">
+                    <i data-lucide="sparkles" class="w-8 h-8 mr-2"></i> Soruto
+                </div>
+            </a>
+        </div>
+        <nav class="nav-glass">
+            <div class="desktop-menu">
+                <a href="./index.html" class="nav-link">トップ</a>
+                <a href="./about.html" class="nav-link">Sorutoについて</a>
+                <a href="./before_after.html" class="nav-link">Before/After</a>
+                <a href="./touch.html" class="nav-link">さわる</a>
+                <a href="./ingenuity.html" class="nav-link active">くふう</a>
+                <a href="./gallery.html" class="nav-link">ギャラリー</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <a href="./index.html" onclick="toggleMobileMenu()">トップ</a>
+            <a href="./about.html" onclick="toggleMobileMenu()">Sorutoについて</a>
+            <a href="./before_after.html" onclick="toggleMobileMenu()">Before/After</a>
+            <a href="./touch.html" onclick="toggleMobileMenu()">さわる</a>
+            <a href="./ingenuity.html" onclick="toggleMobileMenu()">くふう</a>
+            <a href="./gallery.html" onclick="toggleMobileMenu()">ギャラリー</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section id="hero" class="section hero-section">
+            <div class="content-wrapper fade-in-up">
+                <h1 class="hero-title">
+                    <span class="en-sub">Design Tips & Ideas</span><br>
+                    デザインのくふう
+                </h1>
+                <p class="hero-sub-copy">小さな工夫が、体験を大きく変える。</p>
+                <p class="hero-lead">
+                    Before/Afterや“さわる”で感じた違いを、<br>
+                    ここで言葉にして、自分の引き出しにしよう。<br>
+                    ここは、デザインに行き詰まったときの「思考の避難所」です。
+                </p>
+            </div>
+            <div class="scroll-prompt">
+                <div class="mouse"></div>
+                <span>Scroll to Stock</span>
+            </div>
+        </section>
+
+        <section id="today" class="section today-section">
+            <div class="section-header fade-in-up">
+                <span class="label-today">TODAY’S TIP</span>
+                <h2 id="today-date" class="date-display">----.--.--</h2>
+            </div>
+            <div class="glass-card today-card fade-in-up" id="today-tip-container">
+                <div class="loading-spinner"><i data-lucide="loader-2" class="animate-spin"></i> Loading...</div>
+            </div>
+        </section>
+
+        <section id="all-tips" class="section list-section">
+            <div class="section-header fade-in-up">
+                <h2 class="h2-title">くふうの引き出し</h2>
+                <p class="en-sub">Tips Collection</p>
+            </div>
+
+            <div class="filter-wrapper fade-in-up">
+                <button class="filter-btn active" onclick="filterTips('all')">すべて</button>
+                <button class="filter-btn" onclick="filterTips('color')">色</button>
+                <button class="filter-btn" onclick="filterTips('shape')">形</button>
+                <button class="filter-btn" onclick="filterTips('space')">余白</button>
+                <button class="filter-btn" onclick="filterTips('motion')">動き</button>
+            </div>
+
+            <div class="tips-grid" id="tips-grid">
+                
+                <a href="kufuu_detail.html?id=warning-red" class="tip-card fade-in-up" data-category="color">
+                    <div class="tip-visual color-red">
+                        <div class="mock-alert"><i data-lucide="alert-circle"></i> Error</div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">色</div>
+                        <h3>警告の赤</h3>
+                        <p class="desc">「危険」「エラー」「停止」を本能的に伝える色。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>ユーザーの足を止めて、注意を喚起するため。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=round-btn" class="tip-card fade-in-up" data-category="shape">
+                    <div class="tip-visual shape-round">
+                        <button class="mock-btn-round">Push Me</button>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">形</div>
+                        <h3>丸いボタン</h3>
+                        <p class="desc">角が丸いと「優しさ」「押しやすさ」を感じさせる。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>指先にフィットする形状で親しみやすさを演出。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=readable-space" class="tip-card fade-in-up" data-category="space">
+                    <div class="tip-visual space-readable">
+                        <div class="lines"><span></span><span></span><span></span></div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">余白</div>
+                        <h3>読みやすい余白</h3>
+                        <p class="desc">行間を適度に空けると、目の移動が楽になる。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>情報の塊を認識させ、読み疲れを防ぐ。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=align-magic" class="tip-card fade-in-up" data-category="shape">
+                    <div class="tip-visual shape-align">
+                        <i data-lucide="align-left" class="icon-lg"></i>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">形</div>
+                        <h3>整列の魔法</h3>
+                        <p class="desc">左端や上端などの「見えない線」を揃える。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>視線の動きをスムーズにし、信頼感を与える。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=success-green" class="tip-card fade-in-up" data-category="color">
+                    <div class="tip-visual color-green">
+                        <i data-lucide="check-circle" class="icon-lg success"></i>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">色</div>
+                        <h3>成功の緑</h3>
+                        <p class="desc">「できた！」「安全」「進め」という安心感を与える色。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>タスクの完了を伝え、ユーザーを肯定する。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=grouping" class="tip-card fade-in-up" data-category="space">
+                    <div class="tip-visual space-group">
+                        <div class="group-box"></div>
+                        <div class="group-box"></div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">余白</div>
+                        <h3>グループ化</h3>
+                        <p class="desc">関係あるもの同士を近づけ、関係ないものは離す。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>「何と何がセットか」を言葉なしで伝える。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=link-blue" class="tip-card fade-in-up" data-category="color">
+                    <div class="tip-visual color-blue">
+                        <span class="link-text">Click Here</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">色</div>
+                        <h3>リンクの青色</h3>
+                        <p class="desc">インターネット初期からの「押せる場所」の共通言語。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>学習コストを下げ、迷わずクリックさせる。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=caution-yellow" class="tip-card fade-in-up" data-category="color">
+                    <div class="tip-visual color-yellow">
+                        <i data-lucide="alert-triangle" class="icon-lg warning"></i>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">色</div>
+                        <h3>注意の黄色</h3>
+                        <p class="desc">「危険ではないが、気をつけたほうがいい」を伝える。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>作業を中断させずに、リスクを知らせる。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=circle-icon" class="tip-card fade-in-up" data-category="shape">
+                    <div class="tip-visual shape-circle">
+                        <div class="circle-icon"></div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">形</div>
+                        <h3>円形アイコン</h3>
+                        <p class="desc">人の顔や、独立したシンボルに使われる形。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>四角い画面の中で目立たせ、有機的な印象を与える。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=margin" class="tip-card fade-in-up" data-category="space">
+                    <div class="tip-visual space-margin">
+                        <div class="box-margin">Margin</div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">余白</div>
+                        <h3>マージン</h3>
+                        <p class="desc">要素の「外側」の余白。隣との距離感を決める。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>情報の独立性を保ち、圧迫感を減らす。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=dark-mode" class="tip-card fade-in-up" data-category="color">
+                    <div class="tip-visual color-dark">
+                        <span>Dark</span>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">色</div>
+                        <h3>ダークモード</h3>
+                        <p class="desc">暗い背景に白い文字。目の疲れを軽減し、没入感を高める。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>コンテンツ（写真や動画）を際立たせる。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=square-shape" class="tip-card fade-in-up" data-category="shape">
+                    <div class="tip-visual shape-square">
+                        <div class="square-box"></div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">形</div>
+                        <h3>角ばった形</h3>
+                        <p class="desc">「真面目」「信頼」「安定」「厳格」といった印象を与える。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>遊びを排除し、情報の正確さを伝える。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=proximity" class="tip-card fade-in-up" data-category="space">
+                    <div class="tip-visual space-proximity">
+                        <div class="dots-group">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">余白</div>
+                        <h3>近接の法則</h3>
+                        <p class="desc">近くにあるものは関係があると認識される。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>レイアウトだけで論理構造を伝える。</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kufuu_detail.html?id=motion-press" class="tip-card fade-in-up" data-category="motion">
+                    <div class="tip-visual motion-press">
+                        <button class="mock-btn-press">Press</button>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">動き</div>
+                        <h3>押した反応</h3>
+                        <p class="desc">ボタンを押した瞬間に凹んだり色が濃くなる動き。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>「自分の操作が伝わった」という手応え（フィードバック）を返す。</p>
+                        </div>
+                    </div>
+                </a>
+
+                 <a href="kufuu_detail.html?id=motion-expand" class="tip-card fade-in-up" data-category="motion">
+                    <div class="tip-visual motion-expand">
+                        <div class="mock-search-bar"><i data-lucide="search"></i></div>
+                    </div>
+                    <div class="tip-content">
+                        <div class="cat-badge">動き</div>
+                        <h3>広がるUI</h3>
+                        <p class="desc">必要なときだけ場所を取り、普段は小さく収まる工夫。</p>
+                        <div class="tip-detail">
+                            <h4><i data-lucide="lightbulb"></i> 意図</h4>
+                            <p>画面のスペースを有効活用し、ノイズを減らす。</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <section id="interactive-think" class="section think-section">
+            <div class="glass-card fade-in-up">
+                <div class="think-layout">
+                    <div class="soruto-area">
+                        <img src="./images/soruto.png" alt="Soruto" class="soruto-img">
+                        <div class="soruto-bubble" id="soruto-msg">
+                            Loading...
+                        </div>
+                    </div>
+                    <div class="quiz-area">
+                        <h3><i data-lucide="brain-circuit"></i> 思考のトレーニング</h3>
+                        <p class="quiz-q" id="daily-quiz-q">Loading Question...</p>
+                        <div class="quiz-options" id="daily-quiz-options"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer-top-design">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                  <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    日常に隠れたデザインの工夫を見つける学習サイト。<br>
+                    ものづくりの視点が変われば、世界はもっと面白くなる。
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">サイトマップ</h4>
+                <ul class="footer-list">
+                    <li><a href="./index.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> トップページ</a></li>
+                    <li><a href="./about.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Sorutoについて</a></li>
+                    <li><a href="./before_after.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Before/After</a></li>
+                    <li><a href="./touch.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> さわってみてね</a></li>
+                    <li><a href="./ingenuity.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> くふう</a></li>
+                    <li><a href="./gallery.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> ギャラリー</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">お問い合わせ</h4>
+                <ul class="footer-list">
+                    <li><a href="#" class="footer-link"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a></li>
+                </ul>
+                <div class="mt-8">
+                    <p class="text-slate-500 text-sm">&copy; 2025 Soruto Project.<br>Graduation Work.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/ingenuity.js"></script> 
+</body>
+</html>

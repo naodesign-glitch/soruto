@@ -1,0 +1,196 @@
+@charset "UTF-8";
+@use "sass:math";
+@use "setting" as set;
+
+// h2共通CSS
+h2 {
+    text-align: center;
+    font-size: 3rem;
+    span {
+        display: block;
+        font-size: 1.2rem;
+    }
+}
+
+
+//メインビジュアル
+.main_visual {
+    ul {
+        li {
+            width: 100%;
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            // picture {
+            //     width: 100%;
+            //     img {
+            //         display: block;
+            //         width: 100%;
+            //         height: 100%;
+            //     }
+            // }
+        }
+    }
+}
+
+
+// 商品紹介
+section.products {
+    .inner {
+        border-radius: 10px;
+        .products_area {
+            justify-content: center; 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 5%;
+            margin-top: 3rem;
+            @include set.tab {
+                gap: 2rem 4%;
+            }
+            .produts_block {
+                font-size: 28px;
+                display: flex;
+                font-family:"Noto Serif JP", serif;
+                flex-direction: column;
+                width: 40%;
+                padding: 1rem 1rem 1.5rem;
+                @include set.tab {
+                    width: 48%;
+                }
+                h3 {
+                    font-size: 32px;
+                    color: #376758;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 0.5rem;
+                    order: 2;
+                }
+                p {
+                    margin-top: 10rem;
+                    order: 3;
+                }
+                a {
+                    display: block;
+                    background-color: #6b5926;
+                    color: #fff;
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 1rem;
+                    padding: 1rem;
+                    border-radius: 50px;
+                    order: 4;
+                    &:hover {
+                        background-color: #cf0d0d;
+                    }
+                }
+                img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    order: 1;
+                }
+            }
+        }
+        
+    }
+}
+
+.more-btn a {
+    background-color: #8B0000;color: #fff;
+}
+
+.more-btn a:hover {
+  background-color: #a52a2a; /* ホバーで少し明るく */
+}
+
+.name{
+    font-size: 20px;
+    margin: 1rem;
+}
+
+.information{
+    font-size: 16px;
+}
+
+
+.button04 {
+font-size: 20px;
+  display: block;
+  width: 200px;         /* ボタンの幅を決める */
+  margin: 0 auto;       /* 左右自動で中央寄せ */
+  background-color: #fff;
+  border: double 6px #3cb371;
+  color: #3cb371;
+  border-radius: 10px;
+  padding: 10px 0;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+.button04:hover {
+  color: #3cb371;
+  background-color: #f0fff0;
+}
+
+
+// ブランドの歴史
+section.since {
+    .inner {
+        .since_area {
+            display: flex;
+            margin-top: 3rem;
+            .since_block {
+                width: 50%;
+                dl.timeline {
+                    width: 100%;
+                    border-left: 5px solid #d0477e;
+                    div {
+                        display: flex;
+                        position: relative;
+                        &::after {
+                            content: "";
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 100%;
+                            background-color: #d0477e;
+                            position: absolute;
+                            left: -16px;
+                            top: 20px;
+                        }
+                        &:last-child {
+                            padding-bottom: 5rem;
+                        }
+                        dt,dd {
+                            padding: 1rem;
+                            font-size: 2rem;
+                        }
+                        dt {
+                            width: 30%;
+                            padding-left: 1rem;
+                        }
+                        dd {
+                            width: 70%;
+                        }
+                    }
+                }
+                figure {
+                    width: 70%;
+                    margin-top: 2rem;
+                    &:last-child {
+                        margin-left: auto;
+                    }
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                    figcaption {
+                        margin-top: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}

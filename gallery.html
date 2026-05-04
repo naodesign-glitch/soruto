@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UIギャラリー - 生きた手本から学ぶ | Soruto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kiwi+Maru:wght@500&family=M+PLUS+Rounded+1c:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/gallery.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+
+    <div class="starfield-layer" aria-hidden="true">
+        <canvas id="starCanvas"></canvas>
+        <div class="bg-vignette"></div>
+        <div class="noise-overlay"></div>
+        <div class="gallery-spotlight"></div>
+    </div>
+
+    <div class="scroll-indicator-bar" id="progressBar"></div>
+
+    <div id="scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <a href="./index.html" class="logo">
+              <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                <div class="logo-placeholder">
+                    <i data-lucide="sparkles" class="w-8 h-8 mr-2"></i> Soruto
+                </div>
+            </a>
+        </div>
+        <nav class="nav-glass">
+            <div class="desktop-menu">
+                <a href="./index.html" class="nav-link">トップ</a>
+                <a href="./about.html" class="nav-link">Sorutoについて</a>
+                <a href="./before_after.html" class="nav-link">Before/After</a>
+                <a href="./touch.html" class="nav-link">さわる</a>
+                <a href="./ingenuity.html" class="nav-link">くふう</a>
+                <a href="./gallery.html" class="nav-link active">ギャラリー</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <a href="./index.html" onclick="toggleMobileMenu()">トップ</a>
+            <a href="./about.html" onclick="toggleMobileMenu()">Sorutoについて</a>
+            <a href="./before_after.html" onclick="toggleMobileMenu()">Before/After</a>
+            <a href="./touch.html" onclick="toggleMobileMenu()">さわる</a>
+            <a href="./ingenuity.html" onclick="toggleMobileMenu()">くふう</a>
+            <a href="./gallery.html" onclick="toggleMobileMenu()">ギャラリー</a>
+        </div>
+    </header>
+
+    <main class="gallery-page">
+
+        <section class="gallery-hero fade-in-up">
+            <div class="hero-text">
+                <div class="badge-new">UPDATE</div>
+                <h1>UI Gallery</h1>
+                <p class="sub-title">デザインの「正解」を探しにいこう。</p>
+                <p class="desc">
+                    完成された画面・ボタン・アイコンを大量にストック。<br>
+                    迷ったときはここに来て、プロの工夫を盗んでください。
+                </p>
+            </div>
+            <div class="soruto-guide">
+                <div class="soruto-bubble">
+                    <span class="pc-text">左のメニューで<br>絞り込んでみてね！</span>
+                    <span class="sp-text">下のボタンで<br>絞り込んでみてね！</span>
+                </div>
+                <img src="./images/soruto.png" alt="Soruto" class="soruto-img">
+            </div>
+        </section>
+
+        <div class="gallery-layout-container">
+            
+            <aside class="gallery-sidebar fade-in-up">
+                <div class="sidebar-inner">
+                    <div class="search-box">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="gallery-search" placeholder="ログイン, 削除, 青...">
+                    </div>
+
+                    <div class="fav-filter-container">
+                        <label class="fav-toggle-label">
+                            <input type="checkbox" id="fav-filter-checkbox" onchange="toggleFavFilter(this)">
+                            <div class="fav-toggle-inner">
+                                <i data-lucide="heart" class="w-4 h-4 fill-current"></i> お気に入りのみ表示
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="filter-accordion">
+                        
+                        <div class="filter-group open">
+                            <div class="filter-head" onclick="toggleFilter(this)">
+                                <span><i data-lucide="layers"></i> 種類</span>
+                                <i data-lucide="chevron-down" class="arrow"></i>
+                            </div>
+                            <div class="filter-body">
+                                <label><input type="checkbox" name="type" value="screen"> 画面UI</label>
+                                <label><input type="checkbox" name="type" value="button"> ボタン</label>
+                                <label><input type="checkbox" name="type" value="icon"> アイコン</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group open">
+                            <div class="filter-head" onclick="toggleFilter(this)">
+                                <span><i data-lucide="tag"></i> カテゴリ</span>
+                                <i data-lucide="chevron-down" class="arrow"></i>
+                            </div>
+                            <div class="filter-body">
+                                <label><input type="checkbox" name="category" value="login"> ログイン・認証</label>
+                                <label><input type="checkbox" name="category" value="dashboard"> 管理画面</label>
+                                <label><input type="checkbox" name="category" value="media"> メディア・再生</label>
+                                <label><input type="checkbox" name="category" value="ec"> EC・決済</label>
+                                <label><input type="checkbox" name="category" value="sns"> SNS・チャット</label>
+                                <label><input type="checkbox" name="category" value="system"> 設定・ツール</label>
+                            </div>
+                        </div>
+
+                        <div class="filter-group open">
+                            <div class="filter-head" onclick="toggleFilter(this)">
+                                <span><i data-lucide="book-open"></i> デザイン要素</span>
+                                <i data-lucide="chevron-down" class="arrow"></i>
+                            </div>
+                            <div class="filter-body">
+                                <label><input type="checkbox" name="element" value="color"> 色使い</label>
+                                <label><input type="checkbox" name="element" value="space"> 余白・レイアウト</label>
+                                <label><input type="checkbox" name="element" value="typo"> 文字・フォント</label>
+                                <label><input type="checkbox" name="element" value="cta"> 目立たせる(CTA)</label>
+                                <label><input type="checkbox" name="element" value="feedback"> 反応・状態</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="gallery-main fade-in-up">
+                
+                <div class="gallery-top-bar">
+                    <div class="active-chips" id="active-chips"></div>
+                    <div class="sort-selector">
+                        <span id="display-count" style="margin-right:1rem; font-size:0.9rem; color:#94a3b8;">0件</span>
+                        <select id="gallery-sort">
+                            <option value="new">新着順</option>
+                            <option value="popular">人気順</option>
+                            <option value="level_asc">難易度: 低</option>
+                            <option value="level_desc">難易度: 高</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="gallery-section-group" id="sec-screen">
+                    <div class="sec-header">
+                        <h2><i data-lucide="layout"></i> 完成された画面</h2>
+                    </div>
+                    <div class="gallery-grid screen-grid" id="grid-screen">
+                        </div>
+                </div>
+
+                <div class="gallery-section-group" id="sec-button">
+                    <div class="sec-header">
+                        <h2><i data-lucide="mouse-pointer-click"></i> UIボタン図鑑</h2>
+                    </div>
+                    <div class="gallery-grid button-grid" id="grid-button">
+                        </div>
+                </div>
+
+                <div class="gallery-section-group" id="sec-icon">
+                    <div class="sec-header">
+                        <h2><i data-lucide="shapes"></i> UIアイコン図鑑</h2>
+                    </div>
+                    <div class="gallery-grid icon-grid" id="grid-icon">
+                        </div>
+                </div>
+
+            </section>
+        </div>
+
+        <section class="guide-section fade-in-up">
+            <div class="glass-panel guide-panel">
+                <h2><i data-lucide="compass"></i> このページの使い方</h2>
+                <div class="guide-steps">
+                    <div class="step">
+                        <h3>1. 探す</h3>
+                        <p>左のサイドバーで目的や要素から絞り込む。</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. 知る</h3>
+                        <p>詳細ページで「なぜ使いやすいか」の理由を読む。</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. 試す</h3>
+                        <p>「さわる」ページで実際に操作して効果を体感する。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="themes-section fade-in-up">
+            <h2>人気の学びテーマ</h2>
+            <div class="theme-grid">
+                <div class="theme-card" onclick="forceFilter('theme', 'space')">
+                    <i data-lucide="maximize"></i><h3>余白の美学</h3>
+                </div>
+                <div class="theme-card" onclick="forceFilter('theme', 'color')">
+                    <i data-lucide="palette"></i><h3>色の役割</h3>
+                </div>
+                <div class="theme-card" onclick="forceFilter('theme', 'form')">
+                    <i data-lucide="edit-3"></i><h3>入力フォーム</h3>
+                </div>
+                <div class="theme-card" onclick="forceFilter('theme', 'cta')">
+                    <i data-lucide="mouse-pointer-2"></i><h3>CTAボタン</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="next-action-section fade-in-up">
+            <div class="glass-panel wide">
+                <h2>知識を、技術に変える。</h2>
+                <p>見るだけでは終わりません。次はあなたが手を動かす番です。</p>
+                <div class="action-buttons">
+                    <a href="./touch.html" class="action-btn primary">
+                        <i data-lucide="touchpad"></i> 実験室へ行く
+                    </a>
+                    <a href="./ingenuity.html" class="action-btn secondary">
+                        <i data-lucide="lightbulb"></i> くふう解説を読む
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <button class="sp-filter-btn" onclick="toggleSpFilter()">
+            <i data-lucide="filter"></i> 絞り込み
+        </button>
+
+        <div class="sp-bottom-sheet" id="sp-bottom-sheet">
+            <div class="sheet-header">
+                <h3>条件で絞り込む</h3>
+                <button onclick="toggleSpFilter()"><i data-lucide="x"></i></button>
+            </div>
+            <div class="sheet-content" id="sp-filter-container">
+                </div>
+            <div class="sheet-footer">
+                <button class="apply-btn" onclick="toggleSpFilter()">完了</button>
+            </div>
+        </div>
+        <div class="sheet-overlay" onclick="toggleSpFilter()"></div>
+
+    </main>
+
+    <footer class="site-footer-top-design">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                  <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    日常に隠れたデザインの工夫を見つける学習サイト。<br>
+                    ものづくりの視点が変われば、世界はもっと面白くなる。
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">サイトマップ</h4>
+                <ul class="footer-list">
+                    <li><a href="./index.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> トップページ</a></li>
+                    <li><a href="./about.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Sorutoについて</a></li>
+                    <li><a href="./before_after.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Before/After</a></li>
+                    <li><a href="./touch.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> さわってみてね</a></li>
+                    <li><a href="./ingenuity.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> くふう</a></li>
+                    <li><a href="./gallery.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> ギャラリー</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">お問い合わせ</h4>
+                <ul class="footer-list">
+                    <li><a href="#" class="footer-link"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a></li>
+                </ul>
+                <div class="mt-8">
+                    <p class="text-slate-500 text-sm">&copy; 2025 Soruto Project.<br>Graduation Work.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/gallery.js"></script>
+</body>
+</html>

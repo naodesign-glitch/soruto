@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorutoについて - デザインの理由に触れる</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kiwi+Maru:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/about.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <svg style="display: none;">
+        <symbol id="icon-scale" viewBox="0 0 24 24"><path d="M12 3v18m-9-6l9-9 9 9m-9 9a9 9 0 0 0-9-9m18 0a9 9 0 0 1-9 9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+        <symbol id="icon-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></symbol>
+        <symbol id="icon-scan" viewBox="0 0 24 24"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></symbol>
+        <symbol id="icon-touch" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+    </svg>
+</head>
+<body>
+
+    <div id="custom-cursor"></div>
+
+    <div class="starfield-layer" aria-hidden="true">
+        <canvas id="starCanvas"></canvas>
+        <div class="bg-vignette"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="scroll-indicator-bar" id="progressBar"></div>
+
+    <div id="scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i data-lucide="arrow-up" class="w-6 h-6" style="width: 24px; height: 24px;"></i>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <a href="./index.html" class="logo">
+              <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                <div class="logo-placeholder">
+                    <i data-lucide="sparkles" class="w-8 h-8 mr-2"></i> Soruto
+                </div>
+            </a>
+        </div>
+        <nav class="nav-glass">
+            <div class="desktop-menu">
+                <a href="./index.html" class="nav-link">トップ</a>
+                <a href="./about.html" class="nav-link active">Sorutoについて</a>
+                <a href="./before_after.html" class="nav-link">Before/After</a>
+                <a href="./touch.html" class="nav-link">さわる</a>
+                <a href="./ingenuity.html" class="nav-link">くふう</a>
+                <a href="./gallery.html" class="nav-link">ギャラリー</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <a href="./index.html" onclick="toggleMobileMenu()">トップ</a>
+            <a href="./about.html" onclick="toggleMobileMenu()">Sorutoについて</a>
+            <a href="./before_after.html" onclick="toggleMobileMenu()">Before/After</a>
+            <a href="./touch.html" onclick="toggleMobileMenu()">さわる</a>
+            <a href="./ingenuity.html" onclick="toggleMobileMenu()">くふう</a>
+            <a href="./gallery.html" onclick="toggleMobileMenu()">ギャラリー</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <section id="hero" class="section hero-section" data-idx="00">
+            <div class="content-wrapper fade-in-up">
+                <h1 class="hero-title">
+                    <span class="small">デザインの「理由」に触れる</span><br>
+                    Sorutoについて
+                </h1>
+                <p class="hero-lead">
+                    「なんとなく」で作るのをやめたい。<br>
+                    Sorutoは、デザインの裏側にあるロジックを<br>
+                    <span class="highlight">「触って・見て・比べて」</span>学べる場所です。
+                </p>
+
+                <div class="hero-cards-flip">
+                    <div class="flip-card" onclick="toggleCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="icon-circle"><svg class="icon"><use href="#icon-scale"/></svg></div>
+                                <span>比較して体験</span>
+                            </div>
+                            <div class="card-back">
+                                <p>良い例と悪い例を<br>瞬時に切り替え</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="toggleCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="icon-circle"><svg class="icon"><use href="#icon-image"/></svg></div>
+                                <span>完成を見る</span>
+                            </div>
+                            <div class="card-back">
+                                <p>プロが作った<br>実例ギャラリー</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="toggleCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="icon-circle"><svg class="icon"><use href="#icon-scan"/></svg></div>
+                                <span>理由が見える</span>
+                            </div>
+                            <div class="card-back">
+                                <p>見えないガイド線や<br>余白を可視化</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-card" onclick="toggleCard(this)">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="icon-circle"><svg class="icon"><use href="#icon-touch"/></svg></div>
+                                <span>触って学ぶ</span>
+                            </div>
+                            <div class="card-back">
+                                <p>ボタンの押し心地を<br>実験できる</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-prompt">
+                <div class="mouse"></div>
+                <span>Scroll to Explore</span>
+            </div>
+        </section>
+
+        <section id="flow" class="section flow-section" data-idx="01">
+            <div class="section-header fade-in-up">
+                <h2 class="h2-title">体験の流れ</h2>
+                <p class="en-sub">The Process</p>
+            </div>
+            <div class="flow-steps fade-in-up">
+                <div class="flow-card step-1" onclick="toggleFlow(this)">
+                    <div class="step-badge">Step 1</div>
+                    <h3>気づき</h3>
+                    <p class="desc">「使いにくい」を知ることで、課題を発見します。</p>
+                    <div class="more-info">比較モードでBadUIを体験しよう。</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-card step-2" onclick="toggleFlow(this)">
+                    <div class="step-badge">Step 2</div>
+                    <h3>触る</h3>
+                    <p class="desc">実際に指で操作して、違いを体感します。</p>
+                    <div class="more-info">マイクロインタラクションを実験。</div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-card step-3" onclick="toggleFlow(this)">
+                    <div class="step-badge">Step 3</div>
+                    <h3>納得</h3>
+                    <p class="desc">可視化された理由を見て、ロジックを理解します。</p>
+                    <div class="more-info">ガイドラインや余白数値を確認。</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="details" class="section details-section" data-idx="02">
+            <div class="details-container">
+                <div class="sticky-visual">
+                    <div class="glass-screen" id="detailScreen">
+                        <div class="screen-content active" data-step="1">
+                            <div class="mock-ui compare">
+                                <button class="btn bad">Bad</button>
+                                <button class="btn good">Good</button>
+                            </div>
+                            <p class="caption">比較体験</p>
+                        </div>
+                        <div class="screen-content" data-step="2">
+                            <div class="mock-ui gallery">
+                                <div class="card"></div><div class="card"></div>
+                            </div>
+                            <p class="caption">UIギャラリー</p>
+                        </div>
+                        <div class="screen-content" data-step="3">
+                            <div class="mock-ui reason">
+                                <div class="guide-lines"></div>
+                            </div>
+                            <p class="caption">構造可視化</p>
+                        </div>
+                        <div class="screen-content" data-step="4">
+                            <div class="mock-ui touch">
+                                <div class="toggle"><div class="knob"></div></div>
+                            </div>
+                            <p class="caption">インタラクション</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scroll-text">
+                    <div class="detail-item fade-in-up" data-target="1">
+                        <div class="num">01</div>
+                        <h3>比較して体験</h3>
+                        <div class="mobile-visual">
+                            <div class="mock-ui compare">
+                                <button class="btn bad">Bad</button>
+                                <button class="btn good">Good</button>
+                            </div>
+                        </div>
+                        <p>スイッチ一つでデザインを切り替え。<br>ストレスのない操作性を確認できます。</p>
+                    </div>
+                    <div class="detail-item fade-in-up" data-target="2">
+                        <div class="num">02</div>
+                        <h3>完成を見る</h3>
+                        <div class="mobile-visual">
+                            <div class="mock-ui gallery">
+                                <div class="card"></div><div class="card"></div>
+                            </div>
+                        </div>
+                        <p>プロが作ったUIパターンを収録。<br>パーツ配置や色の正解をインプット。</p>
+                    </div>
+                    <div class="detail-item fade-in-up" data-target="3">
+                        <div class="num">03</div>
+                        <h3>理由が見える</h3>
+                        <div class="mobile-visual">
+                            <div class="mock-ui reason">
+                                <div class="guide-lines"></div>
+                            </div>
+                        </div>
+                        <p>「なぜそこに余白があるのか？」<br>普段は見えないガイド線を可視化。</p>
+                    </div>
+                    <div class="detail-item fade-in-up" data-target="4">
+                        <div class="num">04</div>
+                        <h3>触って学ぶ</h3>
+                        <div class="mobile-visual">
+                            <div class="mock-ui touch">
+                                <div class="toggle"><div class="knob"></div></div>
+                            </div>
+                        </div>
+                        <p>ボタンの反発、トグルの動き。<br>心地よい反応を実験できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide" class="section guide-section" data-idx="03">
+            <div class="glass-card wide fade-in-up">
+                <div class="char-layout">
+                    <div class="char-img-box">
+                        <div class="aura"></div>
+                        <img src="./images/soruto.png" alt="Soruto">
+                    </div>
+                    <div class="char-text">
+                        <div class="role-badge">Official Guide</div>
+                        <h3>Soruto<span>（ソルト）</span></h3>
+                        <p>
+                            デザインの「隠し味（Salt）」を見つける案内人。<br>
+                            難しい言葉は使わず、優しくナビゲートします。<br>
+                            答えを教えるのではなく、気づきを促すパートナーです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta" class="section cta-section" data-idx="04">
+            <div class="cta-inner fade-in-up">
+                <h2>さあ、理由に触れよう。</h2>
+                <p class="cta-sub">デザインの見方が変わる体験が<br>ここから始まります。</p>
+                <div class="cta-grid">
+                    <a href="./before_after.html" class="glass-cta secondary effect-particle">
+                        <svg class="icon"><use href="#icon-scale"/></svg>
+                        <span>Before/After</span>
+                    </a>
+                    <a href="./touch.html" class="glass-cta primary effect-particle">
+                        <svg class="icon"><use href="#icon-touch"/></svg>
+                        <span>さわってみる</span>
+                    </a>
+                    <a href="./ingenuity.html" class="glass-cta secondary effect-particle">
+                        <svg class="icon"><use href="#icon-scan"/></svg>
+                        <span>くふうを知る</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section faq-section" data-idx="05">
+            <div class="faq-inner fade-in-up">
+                <h2 class="h2-title">よくある質問</h2>
+                <div class="accordion">
+                    <div class="acc-item">
+                        <button class="acc-head" onclick="toggleAcc(this)">どんな人向けですか？<span class="plus">+</span></button>
+                        <div class="acc-body"><p>デザイン初学者、エンジニア、ノンデザイナーなど、「なんとなく」から卒業したい全ての方に向けた内容です。</p></div>
+                    </div>
+                    <div class="acc-item">
+                        <button class="acc-head" onclick="toggleAcc(this)">利用にお金はかかりますか？<span class="plus">+</span></button>
+                        <div class="acc-body"><p>完全無料です。すべてのコンテンツを自由にお使いいただけます。</p></div>
+                    </div>
+                    <div class="acc-item">
+                        <button class="acc-head" onclick="toggleAcc(this)">スマホでも見れますか？<span class="plus">+</span></button>
+                        <div class="acc-body"><p>はい。PC、タブレット、スマートフォン、どのデバイスでも快適に体験できるように設計されています。</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer-top-design">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                  <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    日常に隠れたデザインの工夫を見つける学習サイト。<br>
+                    ものづくりの視点が変われば、世界はもっと面白くなる。
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">サイトマップ</h4>
+                <ul class="footer-list">
+                    <li><a href="./index.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> トップページ</a></li>
+                    <li><a href="./about.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Sorutoについて</a></li>
+                    <li><a href="./before_after.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Before/After</a></li>
+                    <li><a href="./touch.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> さわってみてね</a></li>
+                    <li><a href="./ingenuity.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> くふう</a></li>
+                    <li><a href="./gallery.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> ギャラリー</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">お問い合わせ</h4>
+                <ul class="footer-list">
+                    <li><a href="#" class="footer-link"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a></li>
+                </ul>
+                <div class="mt-8">
+                    <p class="text-slate-500 text-sm">&copy; 2025 Soruto Project.<br>Graduation Work.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/about.js"></script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soruto - Before / After</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kiwi+Maru:wght@500&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/before_after.css">
+    
+    <script src="./js/before_after.js" defer></script>
+</head>
+<body class="page-before-after light-mode">
+
+    <div class="scroll-indicator-bar" id="progressBar"></div>
+
+    <div class="starfield-layer" aria-hidden="true">
+        <canvas id="baStarCanvas"></canvas>
+        <div class="bg-vignette"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div id="custom-cursor"></div>
+    
+    <div id="scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <a href="./index.html" class="logo">
+              <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                <div class="logo-placeholder">
+                    <i data-lucide="sparkles" class="w-8 h-8 mr-2"></i> Soruto
+                </div>
+            </a>
+        </div>
+        <nav class="nav-glass">
+            <div class="desktop-menu">
+                <a href="./index.html" class="nav-link">トップ</a>
+                <a href="./about.html" class="nav-link">Sorutoについて</a>
+                <a href="./before_after.html" class="nav-link active">Before/After</a>
+                <a href="./touch.html" class="nav-link">さわる</a>
+                <a href="./ingenuity.html" class="nav-link">くふう</a>
+                <a href="./gallery.html" class="nav-link">ギャラリー</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <a href="./index.html" onclick="toggleMobileMenu()">トップ</a>
+            <a href="./about.html" onclick="toggleMobileMenu()">Sorutoについて</a>
+            <a href="./before_after.html" onclick="toggleMobileMenu()">Before/After</a>
+            <a href="./touch.html" onclick="toggleMobileMenu()">さわる</a>
+            <a href="./ingenuity.html" onclick="toggleMobileMenu()">くふう</a>
+            <a href="./gallery.html" onclick="toggleMobileMenu()">ギャラリー</a>
+        </div>
+    </header>
+
+    <main class="ba-main">
+
+        <section class="ba-section hero-section fade-up">
+            <div class="hero-inner">
+                <h1 class="hero-title">
+                    <span class="small">日替わりでデザインを学ぶ</span><br>
+                    Before / After
+                </h1>
+                <p class="hero-lead">
+                    「違い」を知れば、デザインはもっと面白くなる。<br>
+                    毎日更新されるテーマで、良いUIの理由を体験しよう。
+                </p>
+                
+                <div class="hero-char-box">
+                    <img src="./images/soruto.png" alt="Soruto" class="float-char">
+                </div>
+            </div>
+        </section>
+
+        <section class="ba-section daily-area fade-up">
+            <div class="ba-container max-width-800">
+                
+                <div class="daily-header-block">
+                    <div class="theme-title-group">
+                        <span class="badge">TODAY'S THEME</span>
+                        <h2 id="todayThemeTitle">Loading...</h2>
+                    </div>
+                    <div class="glass-timer">
+                        <i data-lucide="timer"></i>
+                        <div class="timer-text">
+                            <span class="label">Next Update</span>
+                            <span class="time" id="baCountdown">--:--:--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui-stage-block glass-panel">
+                    <div class="ba-controller">
+                        <span class="label bad">Before</span>
+                        <button id="baSwitchBtn" class="switch-btn">
+                            <div class="track"><div class="thumb"></div></div>
+                        </button>
+                        <span class="label good">After</span>
+                    </div>
+
+                    <div class="ba-mockup-window" id="baMockup" data-state="before">
+                        <div class="window-header">
+                            <div class="dots"><span></span><span></span><span></span></div>
+                            <div class="url">soruto.app/daily</div>
+                        </div>
+                        <div class="window-body" id="uiCanvas">
+                            </div>
+                        <div class="overlay-hints" id="overlayHints"></div>
+                    </div>
+                </div>
+
+                <div class="section-header-simple fade-up">
+                    <h2><i data-lucide="message-circle" class="icon-inline"></i> Before/Afterを見て気づいたこと</h2>
+                    <p>「なぜ使いやすい？」をAIと一緒に深掘りしよう。</p>
+                </div>
+
+                <div class="chat-block glass-panel">
+                    <div class="chat-header">
+                        <div class="icon-box-fixed">
+                            <img src="./images/soruto.png" alt="Soruto AI">
+                        </div>
+                        <div class="info">
+                            <strong>Soruto AI</strong>
+                            <span>Online - 解説中</span>
+                        </div>
+                    </div>
+                    <div class="chat-logs" id="chatLogs">
+                        <div class="msg left">
+                            <div class="avatar-fixed"><img src="./images/soruto.png"></div>
+                            <div class="bubble">
+                                今日のテーマについて、どこが違うか気づいた？<br>
+                                「余白」や「色」について教えてね！
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="例：Afterの方がボタンが押しやすそう！" autocomplete="off">
+                        <button id="chatSendBtn"><i data-lucide="send"></i></button>
+                    </div>
+                </div>
+
+                <div class="learning-block">
+                    <div class="learning-card glass-panel flex-card">
+                        <h3><i data-lucide="check-circle-2"></i> 今日のポイント</h3>
+                        <ul class="point-list" id="learningPoints"></ul>
+                    </div>
+                    <div class="learning-card glass-panel bad-mode flex-card">
+                        <h3><i data-lucide="alert-triangle"></i> よくあるBAD</h3>
+                        <ul class="bad-list" id="badPatterns"></ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="ba-section next-action fade-up">
+            <div class="ba-container max-width-800">
+                <div class="next-banner glass-panel">
+                    <div class="content">
+                        <h2>次は「触って」確かめよう</h2>
+                        <p>知識がついたら、実際の動きを体験してみよう。</p>
+                        <a href="./touch.html" class="cta-button">
+                            さわるページへ <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer-top-design">
+        <div class="footer-glass-deco"></div>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                  <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    日常に隠れたデザインの工夫を見つける学習サイト。<br>
+                    ものづくりの視点が変われば、世界はもっと面白くなる。
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">サイトマップ</h4>
+                <ul class="footer-list">
+                    <li><a href="./index.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> トップページ</a></li>
+                    <li><a href="./about.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Sorutoについて</a></li>
+                    <li><a href="./before_after.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Before/After</a></li>
+                    <li><a href="./touch.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> さわってみてね</a></li>
+                    <li><a href="./ingenuity.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> くふう</a></li>
+                    <li><a href="./gallery.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> ギャラリー</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">お問い合わせ</h4>
+                <ul class="footer-list">
+                    <li><a href="#" class="footer-link"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a></li>
+                </ul>
+                <div class="mt-8">
+                    <p class="text-slate-500 text-sm">&copy; 2025 Soruto Project.<br>Graduation Work.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

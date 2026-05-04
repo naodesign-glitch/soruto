@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詳細 - Soruto Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kiwi+Maru:wght@500&family=M+PLUS+Rounded+1c:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./css/gallery_detail.css">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    
+    <div id="custom-cursor"></div>
+    <div class="starfield-layer">
+        <canvas id="starCanvas"></canvas>
+        <div class="bg-vignette"></div>
+        <div class="gallery-spotlight"></div>
+    </div>
+
+    <div id="scroll-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </div>
+
+    <header>
+        <div class="logo-wrapper">
+            <a href="./index.html" class="logo">
+              <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                <div class="logo-placeholder">
+                    <i data-lucide="sparkles" class="w-8 h-8 mr-2"></i> Soruto
+                </div>
+            </a>
+        </div>
+        <nav class="nav-glass">
+            <div class="desktop-menu">
+                <a href="./index.html" class="nav-link">トップ</a>
+                <a href="./about.html" class="nav-link">Sorutoについて</a>
+                <a href="./before_after.html" class="nav-link">Before/After</a>
+                <a href="./touch.html" class="nav-link">さわる</a>
+                <a href="./ingenuity.html" class="nav-link">くふう</a>
+                <a href="./gallery.html" class="nav-link active">ギャラリー</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </nav>
+        <div class="mobile-menu">
+            <a href="./index.html" onclick="toggleMobileMenu()">トップ</a>
+            <a href="./about.html" onclick="toggleMobileMenu()">Sorutoについて</a>
+            <a href="./before_after.html" onclick="toggleMobileMenu()">Before/After</a>
+            <a href="./touch.html" onclick="toggleMobileMenu()">さわる</a>
+            <a href="./ingenuity.html" onclick="toggleMobileMenu()">くふう</a>
+            <a href="./gallery.html" onclick="toggleMobileMenu()">ギャラリー</a>
+        </div>
+    </header>
+
+    <main class="detail-page">
+        <div class="back-nav">
+            <a href="./gallery.html" class="back-btn"><i data-lucide="arrow-left"></i> ギャラリー一覧へ</a>
+        </div>
+
+        <div id="item-detail-view" class="detail-container hidden">
+            <div class="detail-left" id="detail-img-area"></div>
+            
+            <div class="detail-right">
+                <div class="detail-header">
+                    <span id="detail-cat" class="meta-cat">CATEGORY</span>
+                    <span id="detail-date">Date</span>
+                </div>
+                <h1 id="detail-title">タイトル読み込み中...</h1>
+                <div class="detail-body">
+                    <p id="detail-desc">詳細情報を読み込んでいます。</p>
+                </div>
+                
+                <div id="detail-extra-content"></div>
+
+                <div class="tags-area" id="detail-tags"></div>
+            </div>
+        </div>
+
+        <div id="theme-detail-view" class="hidden">
+            <section class="theme-hero">
+                <div class="icon-circle">
+                    <i data-lucide="star" id="theme-icon" style="width:64px; height:64px; color:#fcd34d;"></i>
+                </div>
+                <h1 id="theme-title">テーマタイトル</h1>
+                <p class="theme-desc" id="theme-desc">テーマ解説</p>
+                <div id="theme-extra-content"></div>
+            </section>
+
+            <section class="theme-examples">
+                <h2><i data-lucide="layers"></i> 関連するデザイン事例</h2>
+                <div class="gallery-grid" id="theme-grid"></div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="site-footer-top-design">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">
+                  <img src="./images/logo.png" alt="Soruto Logo" class="logo-img">
+                </div>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    日常に隠れたデザインの工夫を見つける学習サイト。<br>
+                    ものづくりの視点が変われば、世界はもっと面白くなる。
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">サイトマップ</h4>
+                <ul class="footer-list">
+                    <li><a href="./index.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> トップページ</a></li>
+                    <li><a href="./about.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Sorutoについて</a></li>
+                    <li><a href="./before_after.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> Before/After</a></li>
+                    <li><a href="./touch.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> さわってみてね</a></li>
+                    <li><a href="./ingenuity.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> くふう</a></li>
+                    <li><a href="./gallery.html" class="footer-link"><i data-lucide="arrow-right" class="w-4 h-4"></i> ギャラリー</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">お問い合わせ</h4>
+                <ul class="footer-list">
+                    <li><a href="#" class="footer-link"><i data-lucide="mail" class="w-4 h-4"></i> Contact Us</a></li>
+                </ul>
+                <div class="mt-8">
+                    <p class="text-slate-500 text-sm">&copy; 2025 Soruto Project.<br>Graduation Work.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/gallery_detail.js"></script>
+</body>
+</html>
