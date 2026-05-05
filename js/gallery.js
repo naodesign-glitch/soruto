@@ -3,16 +3,16 @@
    ========================================== */
 const GALLERY_DATA = [
     // --- Screens ---
-    { id: 101, type: "screen", title: "ログイン画面", category: "login", elements: ["form", "cta"], level: "beginner", desc: "迷わせないシンプルな認証画面。", img: "./images/登録画面（サインアップ）.jpg", tags: ["Login", "Mobile"], date: "2025-01-10", likes: 120 },
-    { id: 102, type: "screen", title: "ダッシュボード", category: "dashboard", elements: ["space", "hierarchy"], level: "advanced", desc: "情報量が多いデータを整理。", img: "./images/デイリーUI. 42日目 To-Do List.jpg", tags: ["Admin", "Data"], date: "2025-01-12", likes: 200 },
-    { id: 103, type: "screen", title: "音楽プレイヤー", category: "media", elements: ["color", "feedback"], level: "intermediate", desc: "没入感を高める配色と配置。", img: "./images/デイリーUI 9日目 Music Player.jpg", tags: ["Music", "App"], date: "2025-01-15", likes: 85 },
-    { id: 105, type: "screen", title: "チャット一覧", category: "sns", elements: ["hierarchy", "typo"], level: "intermediate", desc: "未読・既読がわかるリスト。", img: "./images/デイリーUI 13日目 Direct Message.jpg", tags: ["Chat", "List"], date: "2025-01-20", likes: 90 },
-    { id: 106, type: "screen", title: "設定メニュー", category: "system", elements: ["space", "icon"], level: "beginner", desc: "探しやすいリストナビ。", img: "./images/デイリーUI 7日目 settings.jpg", tags: ["Settings", "Nav"], date: "2025-01-22", likes: 70 },
-    { id: 109, type: "screen", title: "プロフィール", category: "sns", elements: ["hierarchy", "image"], level: "beginner", desc: "個性を表現するレイアウト。", img: "./images/デイリーUI 6日目 User Profile .jpg", tags: ["Profile", "User"], date: "2025-01-25", likes: 95 },
-    { id: 110, type: "screen", title: "マップ検索", category: "system", elements: ["ui", "map"], level: "advanced", desc: "地図と情報の重ね合わせ。", img: "./images/デイリーUI 20日目 Location Tracker.jpg", tags: ["Map", "Search"], date: "2025-01-26", likes: 160 },
-    { id: 111, type: "screen", title: "カレンダー", category: "system", elements: ["grid", "color"], level: "intermediate", desc: "予定が見やすいグリッド。", img: "./images/デイリーUI 38日目 Calendar.png", tags: ["Calendar", "Date"], date: "2025-01-27", likes: 105 },
-    { id: 112, type: "screen", title: "天気予報", category: "system", elements: ["list", "icon"], level: "beginner", desc: "アイコンで情報を伝える。", img: "./images/デイリーUI 37日目 Weather Design.jpg", tags: ["Weather", "Icon"], date: "2025-01-28", likes: 80 },
-    { id: 113, type: "screen", title: "カメラ", category: "media", elements: ["ui", "feedback"], level: "intermediate", desc: "撮影に集中できるUI。", img: "./images/デイリーUI 73日目 Virtual Reality.png", tags: ["Camera", "Media"], date: "2025-01-29", likes: 110 },
+    { id: 101, type: "screen", title: "ログイン画面", category: "login", elements: ["form", "cta"], level: "beginner", desc: "迷わせないシンプルな認証画面。", img: "./images/01sign.jpg", tags: ["Login", "Mobile"], date: "2025-01-10", likes: 120 },
+    { id: 102, type: "screen", title: "ダッシュボード", category: "dashboard", elements: ["space", "hierarchy"], level: "advanced", desc: "情報量が多いデータを整理。", img: "./images/42to_dolist.jpg", tags: ["Admin", "Data"], date: "2025-01-12", likes: 200 },
+    { id: 103, type: "screen", title: "音楽プレイヤー", category: "media", elements: ["color", "feedback"], level: "intermediate", desc: "没入感を高める配色と配置。", img: "./images/09music_player.jpg", tags: ["Music", "App"], date: "2025-01-15", likes: 85 },
+    { id: 105, type: "screen", title: "チャット一覧", category: "sns", elements: ["hierarchy", "typo"], level: "intermediate", desc: "未読・既読がわかるリスト。", img: "./images/13direct_message.jpg", tags: ["Chat", "List"], date: "2025-01-20", likes: 90 },
+    { id: 106, type: "screen", title: "設定メニュー", category: "system", elements: ["space", "icon"], level: "beginner", desc: "探しやすいリストナビ。", img: "./images//07settings.jpg", tags: ["Settings", "Nav"], date: "2025-01-22", likes: 70 },
+    { id: 109, type: "screen", title: "プロフィール", category: "sns", elements: ["hierarchy", "image"], level: "beginner", desc: "個性を表現するレイアウト。", img: "./images/06user_profile .jpg", tags: ["Profile", "User"], date: "2025-01-25", likes: 95 },
+    { id: 110, type: "screen", title: "マップ検索", category: "system", elements: ["ui", "map"], level: "advanced", desc: "地図と情報の重ね合わせ。", img: "./images/20location_tracker.jpg", tags: ["Map", "Search"], date: "2025-01-26", likes: 160 },
+    { id: 111, type: "screen", title: "カレンダー", category: "system", elements: ["grid", "color"], level: "intermediate", desc: "予定が見やすいグリッド。", img: "./images/38calendar.png", tags: ["Calendar", "Date"], date: "2025-01-27", likes: 105 },
+    { id: 112, type: "screen", title: "天気予報", category: "system", elements: ["list", "icon"], level: "beginner", desc: "アイコンで情報を伝える。", img: "./images/37weather_design.jpg", tags: ["Weather", "Icon"], date: "2025-01-28", likes: 80 },
+    { id: 113, type: "screen", title: "カメラ", category: "media", elements: ["ui", "feedback"], level: "intermediate", desc: "撮影に集中できるUI。", img: "./images/73virtual_reality.png", tags: ["Camera", "Media"], date: "2025-01-29", likes: 110 },
     
     // --- Buttons ---
     { id: 201, type: "button", title: "Primary Button", category: "system", elements: ["cta", "color"], level: "beginner", desc: "最も重要なアクション。", html: '<button style="background:#3b82f6; color:white; padding:10px 24px; border-radius:8px; border:none; font-weight:bold;">Save</button>', tags: ["Primary", "CTA"], date: "2025-01-01", likes: 50 },

@@ -9,21 +9,21 @@ const GALLERY_DATA_DETAIL = [
         desc: "ユーザーがサービスに初めて触れる、重要なゲートウェイとなるログイン画面です。\n\nこのデザインの最大の目的は、「迷わせないこと」と「安心感を与えること」にあります。画面構成は極めてシンプルで、ロゴ、入力フォーム、そしてログインボタン（CTA）のみで構成されています。\n\n配色は信頼感のあるブルーを基調とし、入力フィールドは指でタップしやすい十分な高さを確保しています。",
         points: ["視線の分散を防ぐシングルカラムレイアウト。", "入力必須項目を明確にするプレースホルダー。", "背景色とのコントラストを強めたCTAボタン。"],
         usage: [ { label: "アプリ起動時", icon: "smartphone" }, { label: "会員限定エリア", icon: "lock" } ],
-        img: "./images/登録画面（サインアップ）.jpg", tags: ["Login", "Mobile"], likes: 120 
+        img: "./images/01sign.jpg", tags: ["Login", "Mobile"], likes: 120 
     },
     { 
         id: 102, type: "screen", title: "ダッシュボード", category: "dashboard", elements: ["space", "hierarchy"], level: "advanced", 
         desc: "複雑なデータを一目で把握するための管理画面UIです。\n\n情報の優先度に基づいてカードの大きさを変え、視線の動きをコントロールしています。グラフや数値などの重要な情報は上部に配置し、詳細なリストは下部に配置することで、概要から詳細へという自然な情報の流れを作っています。", 
         points: ["情報の階層化による視線誘導。", "カードUIによる情報のグルーピング。", "余白を十分に取った圧迫感のない配置。"], 
         usage: [{label:"管理ツール", icon:"bar-chart-2"}, {label:"分析画面", icon:"activity"}], 
-        img: "./images/デイリーUI. 42日目 To-Do List.jpg", tags: ["Admin", "Data"], likes: 200 
+        img: "./images/42to_dolist.jpg", tags: ["Admin", "Data"], likes: 200 
     },
     { 
         id: 103, type: "screen", title: "音楽プレイヤー", category: "media", elements: ["color", "feedback"], level: "intermediate", 
         desc: "没入感を高めるためのダークモード基調の音楽プレイヤーです。\n\nアルバムアートワークを主役に据え、操作ボタンは親指が届きやすい下部に集約しています。再生バーやボタンには微細なグラデーションとシャドウを施し、触れたくなるような質感を表現しています。", 
         points: ["没入感を高めるダークテーマ。", "片手操作を考慮したボタン配置。", "再生状態を視覚的に伝えるプログレスバー。"], 
         usage: [{label:"音楽アプリ", icon:"music"}, {label:"音声配信", icon:"mic"}], 
-        img: "./images/デイリーUI 9日目 Music Player.jpg", tags: ["Music", "App"], likes: 85 
+        img: "./images/09music_player.jpg", tags: ["Music", "App"], likes: 85 
     },
     { 
         id: 104, type: "screen", title: "商品カード", category: "ec", elements: ["cta", "space"], level: "beginner", 
@@ -37,49 +37,49 @@ const GALLERY_DATA_DETAIL = [
         desc: "メッセージの未読・既読状態を一目で識別できるチャットリスト画面です。\n\nアイコン、名前、最新メッセージ、時間の4要素をバランスよく配置し、太字と色使いで未読状態を強調しています。スワイプ操作を想定したリストの高さ設定もポイントです。", 
         points: ["未読状態の視覚的な強調。", "サムネイルによる送信者の識別。", "リストの可読性を高める十分なパディング。"], 
         usage: [{label:"メッセージアプリ", icon:"message-circle"}, {label:"SNS", icon:"users"}], 
-        img: "./images/デイリーUI 13日目 Direct Message.jpg", tags: ["Chat", "List"], likes: 90 
+        img: "./images/13direct_message.jpg", tags: ["Chat", "List"], likes: 90 
     },
     { 
         id: 106, type: "screen", title: "設定メニュー", category: "system", elements: ["space", "icon"], level: "beginner", 
         desc: "ユーザーが迷わず目的の項目に辿り着ける設定画面です。\n\n関連する項目ごとにグループ化し、余白で区切ることで情報のまとまりを表現しています。各項目の先頭にアイコンを配置することで、文字を読まなくても内容を直感的に推測できるようにしています。", 
         points: ["アイコンによる視認性の向上。", "グルーピングによる情報の整理。", "タップエリアを確保したリストデザイン。"], 
         usage: [{label:"マイページ", icon:"settings"}, {label:"アプリ設定", icon:"tool"}], 
-        img: "./images/デイリーUI 7日目 settings.jpg", tags: ["Settings", "Nav"], likes: 70 
+        img: "./images//07settings.jpg", tags: ["Settings", "Nav"], likes: 70 
     },
     { 
         id: 109, type: "screen", title: "プロフィール", category: "sns", elements: ["hierarchy", "image"], level: "beginner", 
         desc: "ユーザーの個性を表現するためのプロフィール画面です。\n\nヘッダー画像とアイコンを重ねることで奥行きを出し、フォローボタン等のアクション要素は親指の届く範囲に配置しています。数字（フォロワー数など）を強調し、ステータスを一目でわかるようにしています。", 
         points: ["階層構造による視線の誘導。", "重要な数字データの強調。", "アクションボタンの配置最適化。"], 
         usage: [{label:"SNSプロフィール", icon:"user"}, {label:"ポートフォリオ", icon:"briefcase"}], 
-        img: "./images/デイリーUI 6日目 User Profile .jpg", tags: ["Profile", "User"], likes: 95 
+        img: "./images/06user_profile .jpg", tags: ["Profile", "User"], likes: 95 
     },
     { 
         id: 110, type: "screen", title: "マップ検索", category: "system", elements: ["ui", "map"], level: "advanced", 
         desc: "地図情報と検索結果をシームレスに融合させたUIです。\n\n地図の視認性を損なわないように、検索バーや結果カードをフローティング（浮いた状態）で配置しています。現在地ボタンやズーム操作は片手で操作しやすい右下に集約しています。", 
         points: ["地図の可視領域を最大化。", "フローティングカードによる情報表示。", "片手操作を意識したボタン配置。"], 
         usage: [{label:"地図アプリ", icon:"map"}, {label:"店舗検索", icon:"search"}], 
-        img: "./images/デイリーUI 20日目 Location Tracker.jpg", tags: ["Map", "Search"], likes: 160 
+        img: "./images/20location_tracker.jpg", tags: ["Map", "Search"], likes: 160 
     },
     { 
         id: 111, type: "screen", title: "カレンダー", category: "system", elements: ["grid", "color"], level: "intermediate", 
         desc: "予定の有無と内容を把握しやすい月表示カレンダーです。\n\nグリッドレイアウトをベースに、現在の日付や選択中の日付を円形のハイライトで強調しています。予定がある日には小さなドットを表示し、情報を詰め込みすぎずに存在を知らせる工夫をしています。", 
         points: ["グリッドによる整然としたレイアウト。", "色によるステータスの識別。", "最小限のインジケーター（ドット）表示。"], 
         usage: [{label:"スケジュール帳", icon:"calendar"}, {label:"予約システム", icon:"clock"}], 
-        img: "./images/デイリーUI 38日目 Calendar.png", tags: ["Calendar", "Date"], likes: 105 
+        img: "./images/38calendar.png", tags: ["Calendar", "Date"], likes: 105 
     },
     { 
         id: 112, type: "screen", title: "天気予報", category: "system", elements: ["list", "icon"], level: "beginner", 
         desc: "ビジュアルで直感的に伝える天気予報UIです。\n\n画面上部に高品質な天気アイコンと気温を大きく配置し、文字を読む前に状況を理解できるようにしています。週間予報はリスト形式で下部に配置し、情報の優先度に応じたサイズコントラストをつけています。", 
         points: ["ビジュアル優先の情報設計。", "情報の優先度に基づくサイズ変更。", "直感的なアイコンの使用。"], 
         usage: [{label:"ウィジェット", icon:"cloud"}, {label:"旅行アプリ", icon:"plane"}], 
-        img: "./images/デイリーUI 37日目 Weather Design.jpg", tags: ["Weather", "Icon"], likes: 80 
+        img: "./images/37weather_design.jpg", tags: ["Weather", "Icon"], likes: 80 
     },
     { 
         id: 113, type: "screen", title: "カメラ", category: "media", elements: ["ui", "feedback"], level: "intermediate", 
         desc: "撮影体験を阻害しない、ミニマルなカメラUIです。\n\n被写体を確認するビューファインダーを最大化し、シャッターボタン以外の要素を目立たないように配置しています。モード切替はスワイプで直感的に行えるように設計されています。", 
         points: ["ビューファインダーの最大化。", "半透明UIによる視界の確保。", "直感的なジェスチャー操作。"], 
         usage: [{label:"カメラアプリ", icon:"camera"}, {label:"QRスキャン", icon:"maximize"}], 
-        img: "./images/デイリーUI 73日目 Virtual Reality.png", tags: ["Camera", "Media"], likes: 110 
+        img: "./images/73virtual_reality.png", tags: ["Camera", "Media"], likes: 110 
     },
 
     // --- Buttons (201~210) ---
